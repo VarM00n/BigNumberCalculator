@@ -14,6 +14,7 @@ public:
     string dodawanie(string liczba1, string liczba2);
     void wpisywanie();
     string mnozenie(string pierwsza_l, string druga_l);
+    string odejmowanie(string pierwsza_l, string druga_l);
 };
 
 void Dodawanie::wpisywanie()
@@ -78,12 +79,54 @@ string Dodawanie::mnozenie(string liczba1, string liczba2)
     return c;
 }
 
+string Dodawanie::odejmowanie(string liczba1, string liczba2)
+{
+    unsigned long maks_rozmiar = liczba1.size();
+    if(liczba2.size() > liczba1.size()) maks_rozmiar = liczba2.size();
+    string wynik;
+    int przeniesienie = 0;
+    int i = (int) (liczba1.size()-1);
+    int k = (int) (liczba2.size()-1);
+    for(int j = 0; j < maks_rozmiar+1; i--, k--, j++) {
+        int pierwsza = (int) liczba1[i]-48;
+        int druga = (int) liczba2[k]-48;
+        if( k < 0){
+            druga = 0;
+        }
+        if( i < 0){
+            pierwsza = 0;
+        }
+        int pierwsza_do_while = (int) (liczba1.size());
+        int druga_do_while = (int) (liczba2.size());
+        if(druga > pierwsza){
+            int counter = 0;
+            pierwsza += 10;
+            while(liczba1[maks_rozmiar - ( counter + 1 )] == 48){
+                liczba1[maks_rozmiar - ( counter + 1 )] = 57;
+                counter ++;
+            }
+            liczba1[maks_rozmiar - ( counter + 1 )] = (char) liczba1[maks_rozmiar - ( counter + 1 )] - 49;
+        }
+        wynik.insert(0,to_string( (char) (pierwsza - druga)));
+    }
+    while(wynik[0] == 48)
+        wynik.erase(0,1);
+
+    return wynik;
+
+}
+
+
+
+
+
+
 int main() {
     Dodawanie dzialanie;
 //    cout << dzialanie.dodawanie("779159259269", "5925925926000");
     dzialanie.wpisywanie();
 //    cout << endl;
 //    cout << dzialanie.mnozenie(dzialanie.pierwsza_l, dzialanie.druga_l);
-    cout << dzialanie.mnozenie(dzialanie.pierwsza_l, dzialanie.druga_l);
+    cout << dzialanie.odejmowanie(dzialanie.pierwsza_l, dzialanie.druga_l);
     return 0;
 }
