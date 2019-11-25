@@ -12,9 +12,17 @@ class Calculator {
 public:
     static std::string removeTrailingZeros(std::string str);
 
+    std::string addition(Number &n1, Number &n2);
+
+    std::string addition(std::string n1, std::string n2);
+
     std::string substract(Number &n1, Number &n2);
 
     std::string substract(std::string n1, std::string n2);
+
+    std::string multiplication(Number &n1, Number &n2);
+
+    std::string multiplication(std::string n1, std::string n2);
 };
 
 
