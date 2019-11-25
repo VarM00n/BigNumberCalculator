@@ -14,11 +14,11 @@ private:
 public:
     Number(std::string value, bool sign);
 
-    void setNumberInPosition(unsigned long position, char digit);
+    void setNumberInPosition(long position, char digit);
 
-    void setNumberInPosition(unsigned long position, unsigned digit);
+    void setNumberInPosition(long position, unsigned digit);
 
-    unsigned getDigitFromPosition(unsigned long position);
+    unsigned getDigitFromPosition(long position);
 
     unsigned size();
 };

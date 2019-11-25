@@ -10,17 +10,17 @@ using namespace std;
 string Calculator::substract(Number &n1, Number &n2) {
     string wynik;
 
-    size_t n1_i = n1.size() - 1;
-    size_t n2_i = n2.size() - 1;
+    long n1_i = (long) n1.size() - 1;
+    long n2_i = (long) n2.size() - 1;
 
     for (size_t i = 0; i < n1.size() + 1; n1_i--, n2_i--, i++) {
-        unsigned pierwsza = n1.getDigitFromPosition(n1_i);
-        unsigned druga = n2.getDigitFromPosition(n2_i);
+        unsigned n1_n = n1.getDigitFromPosition(n1_i);
+        unsigned n2_n = n2.getDigitFromPosition(n2_i);
 
-        if (druga > pierwsza) {
-            pierwsza += 10;
+        if (n1_n < n2_n) {
+            n1_n += 10;
 
-            unsigned long index = n1.size() - 1;
+            long index = (long) (n1.size() - i - 2);
             while (n1.getDigitFromPosition(index) == 0) {
                 n1.setNumberInPosition(index, '9');
                 index--;
@@ -29,7 +29,7 @@ string Calculator::substract(Number &n1, Number &n2) {
             n1.setNumberInPosition(index, n1.getDigitFromPosition(index) - 1);
         }
 
-        wynik.insert(0, to_string((char) (pierwsza - druga)));
+        wynik.insert(0, to_string((char) (n1_n - n2_n)));
     }
 
     return Calculator::removeTrailingZeros(wynik);

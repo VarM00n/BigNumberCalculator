@@ -14,7 +14,7 @@ Number::Number(std::string value, bool sign) {
  * @param position
  * @return int 0-9
  */
-unsigned Number::getDigitFromPosition(unsigned long position) {
+unsigned Number::getDigitFromPosition(long position) {
     if (position < 0)
         return 0;
 
@@ -22,7 +22,7 @@ unsigned Number::getDigitFromPosition(unsigned long position) {
 
     // #TODO: obsługa błędu
     if (digit < 48 || digit > 57)
-        throw std::exception();
+        __builtin_trap();
 
     return (digit - '0');
 }
@@ -31,15 +31,15 @@ unsigned Number::size() {
     return this->value.size();
 }
 
-void Number::setNumberInPosition(unsigned long position, char digit) {
+void Number::setNumberInPosition(long position, char digit) {
     if (position < 0 || position > this->size() - 1)
-        throw std::exception();
-    if (digit < 0 || digit > 9)
-        throw std::exception();
+        __builtin_trap();
+    if (digit < (0 + '0') || digit > (9 + '0'))
+        __builtin_trap();
 
     this->value[position] = digit;
 }
 
-void Number::setNumberInPosition(unsigned long position, unsigned digit) {
+void Number::setNumberInPosition(long position, unsigned digit) {
     this->setNumberInPosition(position, (char) (digit + '0'));
 }

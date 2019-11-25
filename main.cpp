@@ -118,12 +118,11 @@ using namespace std;
 //}
 
 
-int main() {
+int main(int argc, char** argv)  {
     Calculator calc;
-    string a, b;
 
-    cin >> a;
-    cin >> b;
+    string a = argv[1];
+    string b = argv[2];
 
     cout << calc.substract(a, b);
 
