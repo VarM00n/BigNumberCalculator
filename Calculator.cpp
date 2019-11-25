@@ -1,7 +1,3 @@
-//
-// Created by Cezary on 24.11.2019.
-//
-
 #include "Calculator.h"
 #include <string>
 #include <vector>

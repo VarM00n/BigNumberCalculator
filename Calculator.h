@@ -1,7 +1,3 @@
-//
-// Created by Cezary on 24.11.2019.
-//
-
 #ifndef CALCULATOR_CALCULATOR_H
 #define CALCULATOR_CALCULATOR_H
 
