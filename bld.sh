@@ -1,1 +1,0 @@
-g++ main.cpp Calculator.cpp Calculator.h Number.cpp Number.h

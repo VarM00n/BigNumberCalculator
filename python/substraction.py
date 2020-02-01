@@ -11,9 +11,9 @@ for i in range(100):
     if a < b:
         a, b = b, a
 
-    os.system("./a.out "+str(a)+" + "+str(b)+" > test.txt")
-    c = a + b
-    f = open("test.txt", "r")
+    os.system("./a.out "+str(a)+" - "+str(b)+" > test.txt")
+    c = a - b
+    f = open("../test.txt", "r")
     if c != int(f.read()):
         print("error")
         print("a: "+str(a))

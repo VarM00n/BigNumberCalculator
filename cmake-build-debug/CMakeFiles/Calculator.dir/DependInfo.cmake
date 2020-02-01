@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "D:/Projekty/Big Number Calculator/BigNumberCalculator-master/BigNumberCalculator-master/Calculator.cpp" "D:/Projekty/Big Number Calculator/BigNumberCalculator-master/BigNumberCalculator-master/cmake-build-debug/CMakeFiles/Calculator.dir/Calculator.cpp.obj"
-  "D:/Projekty/Big Number Calculator/BigNumberCalculator-master/BigNumberCalculator-master/Number.cpp" "D:/Projekty/Big Number Calculator/BigNumberCalculator-master/BigNumberCalculator-master/cmake-build-debug/CMakeFiles/Calculator.dir/Number.cpp.obj"
-  "D:/Projekty/Big Number Calculator/BigNumberCalculator-master/BigNumberCalculator-master/main.cpp" "D:/Projekty/Big Number Calculator/BigNumberCalculator-master/BigNumberCalculator-master/cmake-build-debug/CMakeFiles/Calculator.dir/main.cpp.obj"
+  "/home/sekka/Projects/BigNumberCalculator/Calculator.cpp" "/home/sekka/Projects/BigNumberCalculator/cmake-build-debug/CMakeFiles/Calculator.dir/Calculator.cpp.o"
+  "/home/sekka/Projects/BigNumberCalculator/Number.cpp" "/home/sekka/Projects/BigNumberCalculator/cmake-build-debug/CMakeFiles/Calculator.dir/Number.cpp.o"
+  "/home/sekka/Projects/BigNumberCalculator/main.cpp" "/home/sekka/Projects/BigNumberCalculator/cmake-build-debug/CMakeFiles/Calculator.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
