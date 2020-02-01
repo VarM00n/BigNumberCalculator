@@ -1,8 +1,5 @@
-//
-// Created by Cezary on 24.11.2019.
-//
-
 #include "Number.h"
+
 
 Number::Number(std::string value, bool sign) {
     this->value = std::move(value);
@@ -42,4 +39,29 @@ void Number::setNumberInPosition(long position, char digit) {
 
 void Number::setNumberInPosition(long position, unsigned digit) {
     this->setNumberInPosition(position, (char) (digit + '0'));
+}
+
+bool Number::checkingForASign(std::string number){
+    return number[0] == '-';
+}
+
+Number::Number(std::string value){
+
+    if(value[0] == '-'){
+        this->value = value.substr(1);
+        this->sign = true;
+    }
+    else{
+        this->value = value;
+        this->sign = false;
+    }
+
+}
+
+bool Number::getSign(){
+    return this->sign;
+}
+
+std::string Number::getValue(){
+    return this->value;
 }

@@ -1,7 +1,3 @@
-//
-// Created by Cezary on 24.11.2019.
-//
-
 #ifndef CALCULATOR_NUMBER_H
 #define CALCULATOR_NUMBER_H
 
@@ -14,6 +10,8 @@ private:
 public:
     Number(std::string value, bool sign);
 
+    Number(std::string value);
+
     void setNumberInPosition(long position, char digit);
 
     void setNumberInPosition(long position, unsigned digit);
@@ -21,6 +19,12 @@ public:
     unsigned getDigitFromPosition(long position);
 
     unsigned size();
+
+    bool getSign();
+
+    std::string getValue();
+
+    bool checkingForASign(std::string number);
 };
 
 

@@ -16,9 +16,23 @@ public:
 
     std::string substract(std::string n1, std::string n2);
 
+    std::string interpreterForSubstract(std::string n1, std::string n2);
+
     std::string multiplication(Number &n1, Number &n2);
 
     std::string multiplication(std::string n1, std::string n2);
+
+    std::string interpreterForMultiplication(std::string n1, std::string n2);
+
+    std::string interpreterForAddition(std::string n1, std::string n2);
+
+    bool checkIfBigger (Number &n1, Number &n2);
+
+    bool checkIfBigger (std::string n1, std::string n2);
+
+    bool checkIfEqual (Number &n1, Number &n2);
+
+    bool checkIfEqual (std::string n1, std::string n2);
 };
 
 
