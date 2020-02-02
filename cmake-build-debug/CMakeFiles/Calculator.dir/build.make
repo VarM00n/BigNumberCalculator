@@ -70,44 +70,44 @@ CMakeFiles/Calculator.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Calculator.dir/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sekka/Projects/BigNumberCalculator/main.cpp -o CMakeFiles/Calculator.dir/main.cpp.s
 
-CMakeFiles/Calculator.dir/Calculator.cpp.o: CMakeFiles/Calculator.dir/flags.make
-CMakeFiles/Calculator.dir/Calculator.cpp.o: ../Calculator.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sekka/Projects/BigNumberCalculator/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Calculator.dir/Calculator.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Calculator.dir/Calculator.cpp.o -c /home/sekka/Projects/BigNumberCalculator/Calculator.cpp
+CMakeFiles/Calculator.dir/src/Calculator.cpp.o: CMakeFiles/Calculator.dir/flags.make
+CMakeFiles/Calculator.dir/src/Calculator.cpp.o: ../src/Calculator.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sekka/Projects/BigNumberCalculator/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Calculator.dir/src/Calculator.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Calculator.dir/src/Calculator.cpp.o -c /home/sekka/Projects/BigNumberCalculator/src/Calculator.cpp
 
-CMakeFiles/Calculator.dir/Calculator.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Calculator.dir/Calculator.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sekka/Projects/BigNumberCalculator/Calculator.cpp > CMakeFiles/Calculator.dir/Calculator.cpp.i
+CMakeFiles/Calculator.dir/src/Calculator.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Calculator.dir/src/Calculator.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sekka/Projects/BigNumberCalculator/src/Calculator.cpp > CMakeFiles/Calculator.dir/src/Calculator.cpp.i
 
-CMakeFiles/Calculator.dir/Calculator.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Calculator.dir/Calculator.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sekka/Projects/BigNumberCalculator/Calculator.cpp -o CMakeFiles/Calculator.dir/Calculator.cpp.s
+CMakeFiles/Calculator.dir/src/Calculator.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Calculator.dir/src/Calculator.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sekka/Projects/BigNumberCalculator/src/Calculator.cpp -o CMakeFiles/Calculator.dir/src/Calculator.cpp.s
 
-CMakeFiles/Calculator.dir/Number.cpp.o: CMakeFiles/Calculator.dir/flags.make
-CMakeFiles/Calculator.dir/Number.cpp.o: ../Number.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sekka/Projects/BigNumberCalculator/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Calculator.dir/Number.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Calculator.dir/Number.cpp.o -c /home/sekka/Projects/BigNumberCalculator/Number.cpp
+CMakeFiles/Calculator.dir/src/Number.cpp.o: CMakeFiles/Calculator.dir/flags.make
+CMakeFiles/Calculator.dir/src/Number.cpp.o: ../src/Number.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sekka/Projects/BigNumberCalculator/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Calculator.dir/src/Number.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Calculator.dir/src/Number.cpp.o -c /home/sekka/Projects/BigNumberCalculator/src/Number.cpp
 
-CMakeFiles/Calculator.dir/Number.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Calculator.dir/Number.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sekka/Projects/BigNumberCalculator/Number.cpp > CMakeFiles/Calculator.dir/Number.cpp.i
+CMakeFiles/Calculator.dir/src/Number.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Calculator.dir/src/Number.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sekka/Projects/BigNumberCalculator/src/Number.cpp > CMakeFiles/Calculator.dir/src/Number.cpp.i
 
-CMakeFiles/Calculator.dir/Number.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Calculator.dir/Number.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sekka/Projects/BigNumberCalculator/Number.cpp -o CMakeFiles/Calculator.dir/Number.cpp.s
+CMakeFiles/Calculator.dir/src/Number.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Calculator.dir/src/Number.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sekka/Projects/BigNumberCalculator/src/Number.cpp -o CMakeFiles/Calculator.dir/src/Number.cpp.s
 
 # Object files for target Calculator
 Calculator_OBJECTS = \
 "CMakeFiles/Calculator.dir/main.cpp.o" \
-"CMakeFiles/Calculator.dir/Calculator.cpp.o" \
-"CMakeFiles/Calculator.dir/Number.cpp.o"
+"CMakeFiles/Calculator.dir/src/Calculator.cpp.o" \
+"CMakeFiles/Calculator.dir/src/Number.cpp.o"
 
 # External object files for target Calculator
 Calculator_EXTERNAL_OBJECTS =
 
 Calculator: CMakeFiles/Calculator.dir/main.cpp.o
-Calculator: CMakeFiles/Calculator.dir/Calculator.cpp.o
-Calculator: CMakeFiles/Calculator.dir/Number.cpp.o
+Calculator: CMakeFiles/Calculator.dir/src/Calculator.cpp.o
+Calculator: CMakeFiles/Calculator.dir/src/Number.cpp.o
 Calculator: CMakeFiles/Calculator.dir/build.make
 Calculator: CMakeFiles/Calculator.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sekka/Projects/BigNumberCalculator/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable Calculator"

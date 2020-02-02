@@ -56,16 +56,17 @@ CMAKE_BINARY_DIR = /home/sekka/Projects/BigNumberCalculator/cmake-build-debug
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/snap/clion/100/bin/cmake/linux/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/snap/clion/100/bin/cmake/linux/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
 
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/snap/clion/100/bin/cmake/linux/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -77,6 +78,51 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/snap/clion/100/bin/cmake/linux/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/snap/clion/100/bin/cmake/linux/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/snap/clion/100/bin/cmake/linux/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/snap/clion/100/bin/cmake/linux/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/snap/clion/100/bin/cmake/linux/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -111,71 +157,95 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Calculator
+# Target rules for targets named Calculator_run
 
 # Build rule for target.
-Calculator: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Calculator
-.PHONY : Calculator
+Calculator_run: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Calculator_run
+.PHONY : Calculator_run
 
 # fast build rule for target.
-Calculator/fast:
-	$(MAKE) -f CMakeFiles/Calculator.dir/build.make CMakeFiles/Calculator.dir/build
-.PHONY : Calculator/fast
+Calculator_run/fast:
+	$(MAKE) -f CMakeFiles/Calculator_run.dir/build.make CMakeFiles/Calculator_run.dir/build
+.PHONY : Calculator_run/fast
 
-Calculator.o: Calculator.cpp.o
+#=============================================================================
+# Target rules for targets named Calculator_lib
 
-.PHONY : Calculator.o
+# Build rule for target.
+Calculator_lib: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Calculator_lib
+.PHONY : Calculator_lib
 
-# target to build an object file
-Calculator.cpp.o:
-	$(MAKE) -f CMakeFiles/Calculator.dir/build.make CMakeFiles/Calculator.dir/Calculator.cpp.o
-.PHONY : Calculator.cpp.o
+# fast build rule for target.
+Calculator_lib/fast:
+	$(MAKE) -f Calculator_lib/CMakeFiles/Calculator_lib.dir/build.make Calculator_lib/CMakeFiles/Calculator_lib.dir/build
+.PHONY : Calculator_lib/fast
 
-Calculator.i: Calculator.cpp.i
+#=============================================================================
+# Target rules for targets named Google_Tests_run
 
-.PHONY : Calculator.i
+# Build rule for target.
+Google_Tests_run: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Google_Tests_run
+.PHONY : Google_Tests_run
 
-# target to preprocess a source file
-Calculator.cpp.i:
-	$(MAKE) -f CMakeFiles/Calculator.dir/build.make CMakeFiles/Calculator.dir/Calculator.cpp.i
-.PHONY : Calculator.cpp.i
+# fast build rule for target.
+Google_Tests_run/fast:
+	$(MAKE) -f Google_tests/CMakeFiles/Google_Tests_run.dir/build.make Google_tests/CMakeFiles/Google_Tests_run.dir/build
+.PHONY : Google_Tests_run/fast
 
-Calculator.s: Calculator.cpp.s
+#=============================================================================
+# Target rules for targets named gmock_main
 
-.PHONY : Calculator.s
+# Build rule for target.
+gmock_main: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gmock_main
+.PHONY : gmock_main
 
-# target to generate assembly for a file
-Calculator.cpp.s:
-	$(MAKE) -f CMakeFiles/Calculator.dir/build.make CMakeFiles/Calculator.dir/Calculator.cpp.s
-.PHONY : Calculator.cpp.s
+# fast build rule for target.
+gmock_main/fast:
+	$(MAKE) -f Google_tests/lib/googlemock/CMakeFiles/gmock_main.dir/build.make Google_tests/lib/googlemock/CMakeFiles/gmock_main.dir/build
+.PHONY : gmock_main/fast
 
-Number.o: Number.cpp.o
+#=============================================================================
+# Target rules for targets named gmock
 
-.PHONY : Number.o
+# Build rule for target.
+gmock: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gmock
+.PHONY : gmock
 
-# target to build an object file
-Number.cpp.o:
-	$(MAKE) -f CMakeFiles/Calculator.dir/build.make CMakeFiles/Calculator.dir/Number.cpp.o
-.PHONY : Number.cpp.o
+# fast build rule for target.
+gmock/fast:
+	$(MAKE) -f Google_tests/lib/googlemock/CMakeFiles/gmock.dir/build.make Google_tests/lib/googlemock/CMakeFiles/gmock.dir/build
+.PHONY : gmock/fast
 
-Number.i: Number.cpp.i
+#=============================================================================
+# Target rules for targets named gtest_main
 
-.PHONY : Number.i
+# Build rule for target.
+gtest_main: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gtest_main
+.PHONY : gtest_main
 
-# target to preprocess a source file
-Number.cpp.i:
-	$(MAKE) -f CMakeFiles/Calculator.dir/build.make CMakeFiles/Calculator.dir/Number.cpp.i
-.PHONY : Number.cpp.i
+# fast build rule for target.
+gtest_main/fast:
+	$(MAKE) -f Google_tests/lib/googletest/CMakeFiles/gtest_main.dir/build.make Google_tests/lib/googletest/CMakeFiles/gtest_main.dir/build
+.PHONY : gtest_main/fast
 
-Number.s: Number.cpp.s
+#=============================================================================
+# Target rules for targets named gtest
 
-.PHONY : Number.s
+# Build rule for target.
+gtest: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gtest
+.PHONY : gtest
 
-# target to generate assembly for a file
-Number.cpp.s:
-	$(MAKE) -f CMakeFiles/Calculator.dir/build.make CMakeFiles/Calculator.dir/Number.cpp.s
-.PHONY : Number.cpp.s
+# fast build rule for target.
+gtest/fast:
+	$(MAKE) -f Google_tests/lib/googletest/CMakeFiles/gtest.dir/build.make Google_tests/lib/googletest/CMakeFiles/gtest.dir/build
+.PHONY : gtest/fast
 
 main.o: main.cpp.o
 
@@ -183,7 +253,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) -f CMakeFiles/Calculator.dir/build.make CMakeFiles/Calculator.dir/main.cpp.o
+	$(MAKE) -f CMakeFiles/Calculator_run.dir/build.make CMakeFiles/Calculator_run.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -192,7 +262,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles/Calculator.dir/build.make CMakeFiles/Calculator.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles/Calculator_run.dir/build.make CMakeFiles/Calculator_run.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -201,7 +271,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles/Calculator.dir/build.make CMakeFiles/Calculator.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles/Calculator_run.dir/build.make CMakeFiles/Calculator_run.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -210,15 +280,19 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
-	@echo "... Calculator"
+	@echo "... install/strip"
 	@echo "... edit_cache"
-	@echo "... Calculator.o"
-	@echo "... Calculator.i"
-	@echo "... Calculator.s"
-	@echo "... Number.o"
-	@echo "... Number.i"
-	@echo "... Number.s"
+	@echo "... Calculator_run"
+	@echo "... list_install_components"
+	@echo "... install/local"
+	@echo "... rebuild_cache"
+	@echo "... install"
+	@echo "... Calculator_lib"
+	@echo "... Google_Tests_run"
+	@echo "... gmock_main"
+	@echo "... gmock"
+	@echo "... gtest_main"
+	@echo "... gtest"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

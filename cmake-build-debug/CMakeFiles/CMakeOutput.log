@@ -463,3 +463,35 @@ Parsed CXX implicit link information from above output:
   implicit fwks: []
 
 
+Determining if the include file pthread.h exists passed with the following output:
+Change Dir: /home/sekka/Projects/BigNumberCalculator/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_ba502/fast && make[1]: Entering directory '/home/sekka/Projects/BigNumberCalculator/cmake-build-debug/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_ba502.dir/build.make CMakeFiles/cmTC_ba502.dir/build
+make[2]: Entering directory '/home/sekka/Projects/BigNumberCalculator/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_ba502.dir/CheckIncludeFile.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_ba502.dir/CheckIncludeFile.c.o   -c /home/sekka/Projects/BigNumberCalculator/cmake-build-debug/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_ba502
+/snap/clion/100/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ba502.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_ba502.dir/CheckIncludeFile.c.o  -o cmTC_ba502 
+make[2]: Leaving directory '/home/sekka/Projects/BigNumberCalculator/cmake-build-debug/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory '/home/sekka/Projects/BigNumberCalculator/cmake-build-debug/CMakeFiles/CMakeTmp'
+
+
+
+Determining if the function pthread_create exists in the pthread passed with the following output:
+Change Dir: /home/sekka/Projects/BigNumberCalculator/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_4ba29/fast && make[1]: Entering directory '/home/sekka/Projects/BigNumberCalculator/cmake-build-debug/CMakeFiles/CMakeTmp'
+/usr/bin/make -f CMakeFiles/cmTC_4ba29.dir/build.make CMakeFiles/cmTC_4ba29.dir/build
+make[2]: Entering directory '/home/sekka/Projects/BigNumberCalculator/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_4ba29.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_4ba29.dir/CheckFunctionExists.c.o   -c /snap/clion/100/bin/cmake/linux/share/cmake-3.15/Modules/CheckFunctionExists.c
+Linking C executable cmTC_4ba29
+/snap/clion/100/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4ba29.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_4ba29.dir/CheckFunctionExists.c.o  -o cmTC_4ba29 -lpthread 
+make[2]: Leaving directory '/home/sekka/Projects/BigNumberCalculator/cmake-build-debug/CMakeFiles/CMakeTmp'
+make[1]: Leaving directory '/home/sekka/Projects/BigNumberCalculator/cmake-build-debug/CMakeFiles/CMakeTmp'
+
+
+
