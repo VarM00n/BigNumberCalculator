@@ -3,25 +3,47 @@
 
 #include <string>
 
+using namespace std;
+
 class Number {
 private:
-    std::string value;
+    string value;
     /**
      * false - number is positive
      * true - number is negative
      */
     bool sign = false;
+
+    /**
+     * Comparison of val1 to val2
+     * val1 > val2
+     */
+    static bool isValueBigger(string val1, string val2);
+
+    /**
+     * Validing and fixing value string
+     */
+    void sanitizeValue();
+
 public:
-    explicit Number(std::string value);
+    // todo output prepare by value nie mogło być "00012312"
+    explicit Number(const string& value);
 
-    Number(std::string value, bool sign);
+    // todo output prepare by value nie mogło być "00012312"
+    Number(const string& value, bool sign);
 
-    
-    void setValue(const std::string &value);
+    // todo dodać konstruktor który utworzy obiekt number na podstawie np int, long, long long, unsigned ...
 
-    bool isSign() const;
+    string toString();
+
+    bool isNegative() const;
+
+    bool isPositive() const;
 
     void setSign(bool sign);
+
+    // todo output prepare by value nie mogło być "00012312"
+    void setValue(const string &value);
 
     void setNumberInPosition(long position, char digit);
 
@@ -36,7 +58,21 @@ public:
 
     unsigned size();
 
-    std::string getValue();
+    string getValue();
+
+    // todo inkrementacja
+    // todo dekrementacja
+    // todo array operator
+
+    bool operator> (const Number& r);
+    bool operator< (const Number& r);
+    bool operator== (const Number& r);
+    bool operator!= (const Number& r);
+
+    // todo dodawanie
+    // todo odejmowanie
+    // todo mnożenie
+    // todo dzielenie
 };
 
 

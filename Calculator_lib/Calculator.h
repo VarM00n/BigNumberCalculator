@@ -4,30 +4,65 @@
 #include <string>
 #include "Number.h"
 
+using namespace std;
+
 class Calculator {
+private:
+    /**
+     * Validation and standarization of output string
+     *
+     * @param output String to validate
+     * @return String with valid value
+     */
+    static string prepareOutputDataString(string output);
+
+    /**
+     * Validation and standarization of output number
+     *
+     * @param output String to validate
+     * @return Number object with valid attributes
+     */
+    static Number prepareOutputDataNumber(string output);
+
+    // Core calculation functions
+    static Number additionOperation(Number &n1, Number &n2);
+    static Number substractOperation(Number &n1, Number &n2);
+    static Number multiplicationOperation(Number &n1, Number &n2);
+
+    /**
+     * Prepares provided data to quick calculation
+     * @param a
+     * @param b
+     * @return
+     */
+    static Number preAddition(Number &a, Number &b);
+    /**
+     * Prepares provided data to quick calculation
+     * @param a
+     * @param b
+     * @return
+     */
+    static Number preSubstract(Number &a, Number &b);
+    /**
+     * Prepares provided data to quick calculation
+     * @param a
+     * @param b
+     * @return
+     */
+    static Number preMultiplication(Number &a, Number &b);
+
 public:
-    static std::string removeTrailingZeros(std::string str);
 
-    // #TODO zmienić nazewnictwo
-    std::string addition(Number &n1, Number &n2);
-    std::string addition(std::string n1, std::string n2);
-    std::string interpreterForAddition(std::string n1, std::string n2);
+    // Overloads
+    static string addition(const string &val1, const string &val2);
+    static string substract(const string &n1, const string &n2);
+    static string multiplication(const string &n1, const string &n2);
 
-    std::string substract(Number &n1, Number &n2);
-    std::string substract(std::string n1, std::string n2);
-    std::string interpreterForSubstract(std::string n1, std::string n2);
+    static Number addition(Number &a, Number &b);
+    static Number substract(Number &a, Number &b);
+    static Number multiplication(Number &a, Number &b);
 
-    std::string multiplication(Number &n1, Number &n2);
-    std::string multiplication(std::string n1, std::string n2);
-    std::string interpreterForMultiplication(std::string n1, std::string n2);
-
-    bool checkIfBigger (Number &n1, Number &n2);
-
-    bool checkIfBigger (std::string n1, std::string n2);
-
-    bool checkIfEqual (Number &n1, Number &n2);
-
-    bool checkIfEqual (std::string n1, std::string n2);
+    static string removeTrailingZeros(string str);
 };
 
 

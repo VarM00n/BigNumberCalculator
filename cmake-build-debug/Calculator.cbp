@@ -448,6 +448,9 @@
 		<Unit filename="/home/sekka/Projects/BigNumberCalculator/Calculator_lib/Calculator.h">
 			<Option target="Calculator_lib"/>
 		</Unit>
+		<Unit filename="/home/sekka/Projects/BigNumberCalculator/Calculator_lib/CalculatorOverloads.cpp">
+			<Option target="Calculator_lib"/>
+		</Unit>
 		<Unit filename="/home/sekka/Projects/BigNumberCalculator/Calculator_lib/Number.cpp">
 			<Option target="Calculator_lib"/>
 		</Unit>
@@ -455,6 +458,9 @@
 			<Option target="Calculator_lib"/>
 		</Unit>
 		<Unit filename="/home/sekka/Projects/BigNumberCalculator/Google_tests/CalculatorTest.cpp">
+			<Option target="Google_Tests_run"/>
+		</Unit>
+		<Unit filename="/home/sekka/Projects/BigNumberCalculator/Google_tests/NumberTest.cpp">
 			<Option target="Google_Tests_run"/>
 		</Unit>
 		<Unit filename="/home/sekka/Projects/BigNumberCalculator/Google_tests/lib/googlemock/src/gmock-all.cc">

@@ -1,10 +1,123 @@
 #include "Calculator.h"
 #include <string>
+#include <utility>
 #include <vector>
 
 using namespace std;
 
-string Calculator::substract(Number &n1, Number &n2) {
+Number Calculator::preAddition(Number &a, Number &b) {
+    // a + (-b) = a - b
+    if (a.isPositive() && a.isNegative()) {
+        b.setSign(false);
+        return preSubstract(a, b);
+    }
+
+    // (-a) + b = b - a
+    if (a.isNegative() && b.isPositive()) {
+//        a.setSign(false);
+
+        return preSubstract(b, a);
+    }
+
+    // (-a) + (-b) = -(a+b)
+    if (a.isNegative() && b.isNegative()) {
+        a.setSign(false);
+        b.setSign(false);
+
+        Number result = additionOperation(a, b);
+        result.setSign(true);
+        return result;
+    }
+
+    // a + b
+    return additionOperation(a, b);
+}
+
+Number Calculator::preSubstract(Number &a, Number &b) {
+    if(a == b)
+        return Number("0");
+
+    // a - (-b) = a + b
+    if (a.isPositive() && a.isNegative()) {
+        b.setSign(false);
+        return preAddition(a, b);
+    }
+
+    // (-a) - b = -(a+b)
+    if (a.isNegative() && b.isPositive()) {
+        a.setSign(false);
+
+        Number result = preAddition(a, b);
+        result.setSign(true);
+        return result;
+    }
+
+    // (-a) - (-b) = b - a
+    if (a.isNegative() && b.isNegative()) {
+        a.setSign(false);
+        a.setSign(false);
+
+        if(b > a)
+            return substractOperation(b, a);
+        else
+            return substractOperation(a, b);
+    }
+
+    // a - b
+    if(a > b)
+        return substractOperation(a, b);
+    else
+        return substractOperation(b, a);
+}
+
+Number Calculator::preMultiplication(Number &a, Number &b) {
+    // a * 0 = 0
+    // 0 * b = 0
+    if(a == Number("0") || b == Number("0"))
+        return Number("0");
+
+    // a * b = a * b
+    // (-a) * (-b) = a*b
+    if((a.isPositive() && b.isPositive()) || (a.isNegative() && b.isNegative())) {
+        a.setSign(false);
+        b.setSign(false);
+
+        return multiplicationOperation(a, b);
+    }
+
+    // (-a) * b = -(a*b)
+    // a * (-b) = -(a*b)
+    if((a.isPositive() && b.isNegative()) || (a.isNegative() && b.isPositive()))
+    {
+        a.setSign(false);
+        b.setSign(false);
+
+        Number result = preAddition(a, b);
+        result.setSign(true);
+        return result;
+    }
+
+    return Number("0");
+}
+
+Number Calculator::additionOperation(Number &n1, Number &n2) {
+    unsigned long maks_rozmiar = n1.size();
+    if (n2.size() > n1.size()) maks_rozmiar = n2.size();
+    string result;
+    unsigned carry = 0;
+    long n1_i = (long) n1.size() - 1;
+    long n2_i = (long) n2.size() - 1;
+    for (size_t i = 0; i < maks_rozmiar + 1; n1_i--, n2_i--, i++) {
+        unsigned n1_n = n1.getDigitFromPosition(n1_i);
+        unsigned n2_n = n2.getDigitFromPosition(n2_i);
+
+        result.insert(0, to_string(((n1_n + n2_n + carry) % 10)));
+        carry = (n1_n + n2_n + carry) / 10;
+    }
+    return Number(result);
+}
+
+Number Calculator::substractOperation(Number &n1, Number &n2) {
     string result;
     long n1_i = (long) n1.size() - 1;
     long n2_i = (long) n2.size() - 1;
@@ -27,121 +140,11 @@ string Calculator::substract(Number &n1, Number &n2) {
 
         result.insert(0, to_string((char) (n1_n - n2_n)));
     }
-    result = Calculator::removeTrailingZeros(result);
-    return result;
+
+    return Number(result);
 }
 
-string Calculator::substract(string n1, string n2) {
-    Number nn1(move(n1));
-    Number nn2(move(n2));
-    return this->substract(nn1, nn2);
-}
-
-string Calculator::interpreterForSubstract(string n1, string n2){
-    if(n1[0] != '-'){
-        if(n2[0] != '-'){
-            if(checkIfBigger(n1, n2)){
-                if(!checkIfEqual(n1, n2)){
-                    return substract(n1, n2);
-                }
-                return "0";
-            }
-            else{
-                if(!checkIfEqual(n1, n2)){
-                    swap(n1, n2);
-                    return '-' + substract(n1, n2);
-                }
-                return "0";
-            }
-        }
-        else{
-            if(checkIfBigger(n1, n2)){
-                return addition(n1, n2);
-            }
-            else{
-                return addition(n1, n2);
-            }
-        }
-    }
-    else{
-        if(n2[0] != '-'){
-                return '-' + addition(n1, n2);
-        }
-        else{
-            if(!checkIfEqual(n1, n2)) {
-                if (checkIfBigger(n1, n2)) {
-                    return '-' + substract(n1, n2);
-                } else {
-                    swap(n1, n2);
-                    return substract(n1, n2);
-                }
-            }
-            return "0";
-        }
-    }
-} // używać jako odejmowania
-
-std::string Calculator::addition(Number &n1, Number &n2) {
-
-    unsigned long maks_rozmiar = n1.size();
-    if (n2.size() > n1.size()) maks_rozmiar = n2.size();
-    string result;
-    unsigned carry = 0;
-    long n1_i = (long) n1.size() - 1;
-    long n2_i = (long) n2.size() - 1;
-    for (size_t i = 0; i < maks_rozmiar + 1; n1_i--, n2_i--, i++) {
-        unsigned n1_n = n1.getDigitFromPosition(n1_i);
-        unsigned n2_n = n2.getDigitFromPosition(n2_i);
-
-        result.insert(0, to_string(((n1_n + n2_n + carry) % 10)));
-        carry = (n1_n + n2_n + carry) / 10;
-    }
-    return result = Calculator::removeTrailingZeros(result);
-}
-
-string Calculator::addition(string n1, string n2) {
-    Number nn1(move(n1));
-    Number nn2(move(n2));
-    return this->addition(nn1, nn2);
-}
-
-string Calculator::interpreterForAddition(string n1, string n2){
-    if(n1[0] != '-'){
-        if(n2[0] != '-'){
-            return addition(n1, n2);
-        }
-        else{
-            if(!checkIfEqual(n1, n2)) {
-                if (checkIfBigger(n1, n2)) {
-                    return substract(n1, n2);
-                } else {
-                    swap(n1, n2);
-                    return '-' + substract(n1, n2);
-                }
-            }
-            return "0";
-        }
-    }
-    else{
-        if(n2[0] != '-'){
-            if(!checkIfEqual(n1, n2)) {
-                swap(n1, n2);
-                if (checkIfBigger(n1, n2)) {
-                    return substract(n1, n2);
-                } else {
-                    swap(n1, n2);
-                    return '-' + substract(n1, n2);
-                }
-            }
-            return "0";
-        }
-        else{
-            return '-' + addition(n1, n2);
-        }
-    }
-} // używać jako dodawania
-
-string Calculator::multiplication(Number &n1, Number &n2) {
+Number Calculator::multiplicationOperation(Number &n1, Number &n2) {
     if (n1.size() < n2.size()) swap(n1, n2);
     vector<string> tu_sum = {};
 
@@ -158,86 +161,43 @@ string Calculator::multiplication(Number &n1, Number &n2) {
             carry = mul / 10;
         }
         tmp.insert(0, to_string(carry));
+        // todo może lepiej korzystać z number?
         tmp = Calculator::removeTrailingZeros(tmp);
         tu_sum.push_back(tmp);
     }
 
     string result;
     for (const auto &i : tu_sum) {
-        result = this->addition(result, i);
+        result = addition(result, i);
     }
-    return result;
+
+    return Calculator::prepareOutputDataNumber(result);
 }
 
-string Calculator::multiplication(string n1, string n2) {
-    Number nn1(move(n1));
-    Number nn2(move(n2));
-    return this->multiplication(nn1, nn2);
-}
-
-string Calculator::interpreterForMultiplication(string n1, string n2){
-    if(n1[0] != '-'){
-        if(n2[0] != '-'){
-            return multiplication(n1, n2);
-        }
-        else{
-            return '-' + multiplication(n1, n2);
-        }
-    }
-    else{
-        if(n2[0] != '-'){
-            return '-' + multiplication(n1, n2);
-        }
-        else{
-            return multiplication(n1, n2);
-        }
-    }
-}
-
+// todo może lepiej korzystać z sanitize w Number?
 string Calculator::removeTrailingZeros(string str) {
     while (str[0] == '0')
         str.erase(0, 1);
+
+    if (str.empty())
+        return "0";
+
     return str;
 }
 
+// todo może lepiej korzystać z sanitize w Number?
+string Calculator::prepareOutputDataString(string str) {
+    // remove unnecessary zeros from the beginning of the number
+    str = removeTrailingZeros(str);
 
-// #TODO do poprawy
-bool Calculator::checkIfBigger (Number &n1, Number &n2){ // sprawdzamy czy n1 > n2
-    if(n1.size() > n2.size()){
-        return true;
-    }
-    else if(n1.size() < n2.size()){
-        return false;
-    }
-    else{
-        for(int i = 0 ; i < n1.size(); i++){
-            if(n1.getValue()[i] > n2.getValue()[i]){
-                return true;
-            }
-            else if(n1.getValue()[i] < n2.getValue()[i]){
-                return false;
-            }
-        }
-    }
+    // zero can't be negative then
+    if (str == "-0")
+        return "0";
+
+    return str;
 }
 
-bool Calculator::checkIfBigger (string n1, string n2){ // sprawdzamy czy n1 > n2
-    Number nn1(move(n1));
-    Number nn2(move(n2));
-    return this->checkIfBigger(nn1, nn2);
-}
-
-bool Calculator::checkIfEqual (Number &n1, Number &n2){
-    for(int i = 0; i < n1.getValue().size(); i++){
-        if(n1.getValue()[i] != n2.getValue()[i]) {
-            return false;
-        }
-    }
-    return true;
-}
-
-bool Calculator::checkIfEqual (string n1, string n2){
-    Number nn1(move(n1));
-    Number nn2(move(n2));
-    return this->checkIfEqual(nn1, nn2);
+// todo ???
+Number Calculator::prepareOutputDataNumber(string output) {
+    return Number(prepareOutputDataString(move(output)));
 }

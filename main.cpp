@@ -39,14 +39,14 @@ int main(){
 //        string a = argv[1];
 //        string b = argv[3];
 //
-//        cout << calc.substract(a, b);
+//        cout << calc.substractOperation(a, b);
 //    }
 //    else if(argv[2] == mul)
 //    {
 //        string a = argv[1];
 //        string b = argv[3];
 //
-//        cout << calc.multiplication(a, b);
+//        cout << calc.multiplicationOperation(a, b);
 //    }
 //    return 0;
 //}
