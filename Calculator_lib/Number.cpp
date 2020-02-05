@@ -94,9 +94,11 @@ unsigned Number::getDigitFromPosition(long position) {
 void Number::setNumberInPosition(long position, char digit) {
     // todo tutaj jest dziwny błąd podczas debugu
     if (position < 0 || position > this->size() - 1)
-        __builtin_trap();
+        return;
+//        __builtin_trap();
     if (digit < (0 + '0') || digit > (9 + '0'))
-        __builtin_trap();
+        return;
+//        __builtin_trap();
 
     this->value[position] = digit;
 }

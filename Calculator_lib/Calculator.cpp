@@ -55,12 +55,15 @@ Number Calculator::preSubstract(Number &a, Number &b) {
     // (-a) - (-b) = b - a
     if (a.isNegative() && b.isNegative()) {
         a.setSign(false);
-        a.setSign(false);
+        b.setSign(false);
 
         if(b > a)
             return substractOperation(b, a);
-        else
-            return substractOperation(a, b);
+        else {
+            Number result = substractOperation(a, b);
+            result.setSign(true);
+            return result;
+        }
     }
 
     // a - b
@@ -95,7 +98,7 @@ Number Calculator::preMultiplication(Number &a, Number &b) {
         a.setSign(false);
         b.setSign(false);
 
-        Number result = preAddition(a, b);
+        Number result = preMultiplication(a, b);
         result.setSign(true);
         return result;
     }

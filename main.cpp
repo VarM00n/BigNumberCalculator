@@ -7,15 +7,13 @@ using namespace std;
 
 
 int main(){
-    Calculator calc;
-
     string a;
     cin >> a;
     string b;
     cin >> b;
     Number n1(a);
     Number n2(b);
-    cout << calc.interpreterForSubstract(a,b);
+    cout << Calculator::substract(a,b);
     return 0;
 }
 
