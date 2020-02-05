@@ -7,14 +7,14 @@ using namespace std;
 
 Number Calculator::preAddition(Number &a, Number &b) {
     // a + (-b) = a - b
-    if (a.isPositive() && a.isNegative()) {
+    if (a.isPositive() && b.isNegative()) {
         b.setSign(false);
         return preSubstract(a, b);
     }
 
     // (-a) + b = b - a
     if (a.isNegative() && b.isPositive()) {
-//        a.setSign(false);
+        a.setSign(false);
 
         return preSubstract(b, a);
     }
@@ -38,7 +38,7 @@ Number Calculator::preSubstract(Number &a, Number &b) {
         return Number("0");
 
     // a - (-b) = a + b
-    if (a.isPositive() && a.isNegative()) {
+    if (a.isPositive() && b.isNegative()) {
         b.setSign(false);
         return preAddition(a, b);
     }
@@ -66,8 +66,11 @@ Number Calculator::preSubstract(Number &a, Number &b) {
     // a - b
     if(a > b)
         return substractOperation(a, b);
-    else
-        return substractOperation(b, a);
+    else {
+        Number result = substractOperation(b, a);
+        result.setSign(true);
+        return result;
+    }
 }
 
 Number Calculator::preMultiplication(Number &a, Number &b) {
