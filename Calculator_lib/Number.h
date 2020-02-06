@@ -14,6 +14,9 @@ private:
      */
     bool sign = false;
 
+    bool floating = false;
+
+    int floating_pos = 0;
     /**
      * Comparison of val1 to val2
      * val1 > val2
@@ -42,6 +45,10 @@ public:
 
     void setSign(bool sign);
 
+    void setFloatingPos(const int floating_position);
+
+    int getFloatingPos();
+
     // todo output prepare by value nie mogło być "00012312"
     void setValue(const string &value);
 
@@ -59,8 +66,6 @@ public:
     unsigned size();
 
     string getValue();
-
-    string del_coma();
 
     string add_coma(int place_of_comma);
 

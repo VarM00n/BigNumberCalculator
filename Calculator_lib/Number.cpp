@@ -11,6 +11,7 @@ Number::Number(const string &val) {
     if (val[0] == '-')
         sign = true;
     setValue(val);
+    sanitizeValue();
 }
 
 bool Number::isNegative() const {
@@ -42,15 +43,22 @@ void Number::sanitizeValue() {
         return;
     }
 
+    for(int i = size() - 1; i > 0; i--){
+        if(getValue()[i] == '.'){
+            setFloatingPos(size() - i -1);
+            break;
+        }
+    }
+
     // get rid of all chars expect digits
     for (char i : value) {
-        if (i >= 48 && i <= 57)
+        if (i >= 48 && i <= 57 )
             output += i;
     }
 
     // remove unnecessary zeros from the beginning of the number
-    while (output[0] == '0')
-        output.erase(0, 1);
+//    while (output[0] == '0')
+//        output.erase(0, 1);
 
     // empty value is zero
     if (output.empty()) {
@@ -63,6 +71,8 @@ void Number::sanitizeValue() {
 
     if (value == "0")
         sign = false;
+
+
 }
 
 string Number::getValue() {
@@ -71,7 +81,14 @@ string Number::getValue() {
 
 void Number::setValue(const string &val) {
     Number::value = val;
-    sanitizeValue();
+}
+
+void Number::setFloatingPos(const int fp) {
+    Number::floating_pos = fp;
+}
+
+int Number::getFloatingPos() {
+    return Number::floating_pos;
 }
 
 unsigned Number::size() {
@@ -164,29 +181,12 @@ bool Number::operator!=(const Number &r) {
     return !operator==(r);
 }
 
-string Number::del_coma(){
-    std::string value;
-    value = "";
-    if(!this->sign){
-        value += "-";
-    }
-    for(int i = 0 ; i < this->size(); i++){
-        if(this->getValue()[i] == ','){
-            value += "";
-        }
-        else{
-            value += this->getValue()[i];
-        }
-    }
-    return value;
-}
-
 string Number::add_coma(int place_of_comma){
     std::string value;
     value = "";
-    if(!this->sign){
-        value += "-";
-    }
+//    if(this->sign){
+//        value += "-";
+//    }
     for(int i = 0 ; i < this->size(); i++){
         if(i == place_of_comma) {
             value += (char) 46;

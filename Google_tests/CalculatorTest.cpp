@@ -2,7 +2,7 @@
 #include "../Calculator_lib/Calculator.h"
 
 
-TEST(Addition, ExampleData){
+TEST(floatingAdditionOperation, ExampleData){
     EXPECT_EQ ("0", Calculator::addition("-0", "-0"));
     EXPECT_EQ ("0", Calculator::addition("0", "-0"));
     EXPECT_EQ ("0", Calculator::addition("-0", "0"));

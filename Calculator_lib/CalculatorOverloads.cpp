@@ -21,19 +21,18 @@ string Calculator::multiplication(const string& val1, const string& val2) {
 }
 
 Number Calculator::addition(Number &a, Number &b) {
-    Number n1(a);
-    Number n2(b);
-    return preAddition(n1, n2);
+    return preAddition(a, b);
 }
 
 Number Calculator::substract(Number &a, Number &b) {
-    Number n1(a);
-    Number n2(b);
-    return preSubstract(n1, n2);
+    return preSubstract(a, b);
 }
 
 Number Calculator::multiplication(Number &a, Number &b) {
-    Number n1(a);
-    Number n2(b);
-    return preMultiplication(n1, n2);
+    return preMultiplication(a, b);
+}
+
+string Calculator::removeTrailingZeros(string str){
+    Number stri(str);
+    return removeTrailingZeros(stri);
 }

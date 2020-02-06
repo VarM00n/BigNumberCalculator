@@ -60,20 +60,27 @@ private:
      */
     static Number preMultiplication(Number &a, Number &b);
 
+
 public:
 
     // Overloads
     static string addition(const string &val1, const string &val2);
     static string substract(const string &n1, const string &n2);
     static string multiplication(const string &n1, const string &n2);
+    static string removeTrailingZeros(string str);
 
     static Number addition(Number &a, Number &b);
     static Number substract(Number &a, Number &b);
     static Number multiplication(Number &a, Number &b);
 
-    static string removeTrailingZeros(string str);
+    static string removeTrailingZeros(Number str);
 
     static Number floatingAdditionOperation(Number &a, Number &b);
+
+    static Number floatingSubstractOperation(Number &a, Number &b);
+
+    static Number floatingMultiplicationOperation(Number &a, Number &b);
+
 };
 
 
