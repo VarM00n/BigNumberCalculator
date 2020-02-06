@@ -180,6 +180,42 @@ Number Calculator::multiplicationOperation(Number &n1, Number &n2) {
     return Calculator::prepareOutputDataNumber(result);
 }
 
+Number Calculator::floatingAdditionOperation(Number &n1, Number &n2){
+    int place_of_comma_n1 = 0, place_of_comma_n2 = 0, temp = 0;
+    for(int i = n1.size() - 1; i > 0; i--){
+        if(n1.getValue()[i] == ',' || n1.getValue()[i] == '.'){
+            place_of_comma_n1 = n1.size() - i -1;
+            break;
+        }
+    }
+    for(int i = n2.size() - 1; i > 0; i--){
+        if(n2.getValue()[i] == ',' || n2.getValue()[i] == '.'){
+            place_of_comma_n2 = n2.size() - i -1;
+            break;
+        }
+    }
+    int place_of_comma_in_result = place_of_comma_n2;
+    if (place_of_comma_in_result < place_of_comma_n1){
+        place_of_comma_in_result = place_of_comma_n1;
+        temp++;
+    }
+    Number nn1 (n1.del_coma());
+    Number nn2 (n2.del_coma());
+    if(temp == 0){
+        for (int i = 0; i < place_of_comma_n2 - place_of_comma_n1; i++) {
+            nn1.getValue() += "0";
+        }
+    }
+    else if(temp == 1){
+        for(int i = 0 ; i < place_of_comma_n1 - place_of_comma_n2; i++){
+            nn2.getValue() += "0";
+        }
+    }
+    Number result(preAddition(nn1, nn2));
+    result.add_coma(result.size() - place_of_comma_in_result);
+    return result;
+}
+
 // todo może lepiej korzystać z sanitize w Number?
 string Calculator::removeTrailingZeros(string str) {
     while (str[0] == '0')

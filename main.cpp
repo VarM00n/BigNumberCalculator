@@ -13,7 +13,7 @@ int main(){
     cin >> b;
     Number n1(a);
     Number n2(b);
-    cout << Calculator::substract(a,b);
+    cout << Calculator::floatingAdditionOperation(n1,n2).getValue();
     return 0;
 }
 

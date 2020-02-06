@@ -42,6 +42,15 @@ private:
      * @param b
      * @return
      */
+
+
+    /**
+     *
+     * @param a
+     * @param b
+     * @return
+     */
+
     static Number preSubstract(Number &a, Number &b);
     /**
      * Prepares provided data to quick calculation
@@ -63,6 +72,8 @@ public:
     static Number multiplication(Number &a, Number &b);
 
     static string removeTrailingZeros(string str);
+
+    static Number floatingAdditionOperation(Number &a, Number &b);
 };
 
 

@@ -163,3 +163,38 @@ bool Number::operator==(const Number &r) {
 bool Number::operator!=(const Number &r) {
     return !operator==(r);
 }
+
+string Number::del_coma(){
+    std::string value;
+    value = "";
+    if(!this->sign){
+        value += "-";
+    }
+    for(int i = 0 ; i < this->size(); i++){
+        if(this->getValue()[i] == ','){
+            value += "";
+        }
+        else{
+            value += this->getValue()[i];
+        }
+    }
+    return value;
+}
+
+string Number::add_coma(int place_of_comma){
+    std::string value;
+    value = "";
+    if(!this->sign){
+        value += "-";
+    }
+    for(int i = 0 ; i < this->size(); i++){
+        if(i == place_of_comma) {
+            value += (char) 46;
+            value += this->getValue()[i];
+        }
+        else{
+            value += this->getValue()[i];
+        }
+    }
+    return value;
+}

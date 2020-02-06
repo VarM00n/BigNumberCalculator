@@ -60,6 +60,10 @@ public:
 
     string getValue();
 
+    string del_coma();
+
+    string add_coma(int place_of_comma);
+
     // todo inkrementacja
     // todo dekrementacja
     // todo array operator
