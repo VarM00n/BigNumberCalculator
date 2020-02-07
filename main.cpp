@@ -13,7 +13,7 @@ int main(){
     cin >> b;
     Number n1(a);
     Number n2(b);
-    cout << Calculator::floatingMultiplicationOperation(n1,n2).getValue();
+    cout << Calculator::division(n1,n2,2);
     return 0;
 }
 

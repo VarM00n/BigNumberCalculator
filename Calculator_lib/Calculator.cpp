@@ -120,7 +120,7 @@ Number Calculator::additionOperation(Number &n1, Number &n2) {
         result.insert(0, to_string(((n1_n + n2_n + carry) % 10)));
         carry = (n1_n + n2_n + carry) / 10;
     }
-    return Number(result);
+    return Number(removeTrailingZeros(result));
 }
 
 Number Calculator::substractOperation(Number &n1, Number &n2) {
@@ -176,15 +176,16 @@ Number Calculator::multiplicationOperation(Number &n1, Number &n2) {
     for (const auto &i : tu_sum) {
         result = addition(result, i);
     }
-    return Number(removeTrailingZeros(result));
+    return Number(result);
 }
 
 Number Calculator::floatingMultiplicationOperation(Number &n1, Number &n2) {
     //setting place of comma in a result
     int place_of_comma_in_result = n2.getFloatingPos() + n1.getFloatingPos();
+    //multiplication
     Number result(multiplication(n1, n2));
     result.setValue(result.add_coma(result.size() - place_of_comma_in_result));
-//    result.setValue(removeTrailingZeros(result));
+    result.setValue(removeTrailingZeros(result));
     return result;
 }
 
@@ -224,7 +225,7 @@ Number Calculator::floatingSubstractOperation(Number &n1, Number &n2){
     if(temp == 0){
         //example first number x.xx, second number y.yyy  (x, y -> Natural number)
         for (int i = 0; i < n2.getFloatingPos() - n1.getFloatingPos(); i++)
-            for (int i = 0; i < n2.getFloatingPos() - n1.getFloatingPos(); i++)
+            for (int j = 0; j < n2.getFloatingPos() - n1.getFloatingPos(); j++)
             n1.setValue(n1.getValue() += "0");
 
     }
@@ -241,18 +242,38 @@ Number Calculator::floatingSubstractOperation(Number &n1, Number &n2){
 }
 
 
+// TODO liczy wrzysko dobrze tylko nie chce wyświetlać
 
-// todo może lepiej korzystać z sanitize w Number? Nie lepiej
-string Calculator::removeTrailingZeros(Number str) {
+Number Calculator::division(Number &n1, Number &n2, int apr) {
+    Number rest("0");
+    Number result("0");
+    Number zero("0");
+    Number one("1");
+    Number two("2");
+    if(n2.getValue() == "0"){
+        __builtin_trap();
+    }
+    while(substract(n1, n2) > zero){
+        n1.setValue(substract(n1, n2).getValue());
+        result.setValue(addition(result, one).getValue());
+    }
+    if(multiplication(n1, two) > n2){
+        result.setValue(addition(result, one).getValue());
+    }
+    return result;
+}
 
-    while ((str.getValue()[0] == '0' && str.getValue()[1] != '.') || str.getValue()[0] == '-')
-        str.setValue(str.getValue().erase(0, 1));
+
+string Calculator::removeTrailingZeros(Number &str) {
 
     if (str.getValue().empty())
         return "0";
 
-    if(str.getValue()[0] == '.'){
-        str.setValue('0' + str.getValue());
+    while ((str.getValue()[0] == '0' && str.getValue()[1] != '.') || str.getValue()[0] == '-')
+        str.setValue(str.getValue().erase(0, 1));
+
+    if(str.getValue()[0] != '-' && str.isNegative()){
+        str.setValue('-' + str.getValue());
     }
     return str.getValue();
 }

@@ -73,13 +73,16 @@ public:
     static Number substract(Number &a, Number &b);
     static Number multiplication(Number &a, Number &b);
 
-    static string removeTrailingZeros(Number str);
+    static Number division(Number &n1, Number &n2, int apr);
+
+    static string removeTrailingZeros(Number &str);
 
     static Number floatingAdditionOperation(Number &a, Number &b);
 
     static Number floatingSubstractOperation(Number &a, Number &b);
 
     static Number floatingMultiplicationOperation(Number &a, Number &b);
+
 
 };
 
