@@ -2,8 +2,11 @@
 #define CALCULATOR_NUMBER_H
 
 #include <string>
+//#include "Calculator.h"
 
 using namespace std;
+
+//class Calculator;
 
 class Number {
 private:
@@ -29,6 +32,8 @@ private:
     void sanitizeValue();
 
 public:
+    Number();
+
     // todo output prepare by value nie mogło być "00012312"
     explicit Number(const string& value);
 
@@ -37,7 +42,7 @@ public:
 
     // todo dodać konstruktor który utworzy obiekt number na podstawie np int, long, long long, unsigned ...
 
-    string toString();
+    string toString() const;
 
     bool isNegative() const;
 
@@ -45,7 +50,7 @@ public:
 
     void setSign(bool sign);
 
-    void setFloatingPos(const int floating_position);
+    void setFloatingPos(const int& floating_position);
 
     int getFloatingPos();
 
@@ -71,18 +76,30 @@ public:
 
     // todo inkrementacja
     // todo dekrementacja
-    // todo array operator
 
     bool operator> (const Number& r);
     bool operator< (const Number& r);
-    bool operator== (const Number& r);
-    bool operator!= (const Number& r);
+    inline bool operator==(const Number &r) const{
+        return this->sign == r.sign && this->value == r.value;
+    }
+    inline bool operator!=(const Number &r) const {
+        return !operator==(r);
+    }
+
+    // todo tu będzie problem z korzystaniem z czegoś co wykorzystuje to co budujemy, może zaprzyjaźnianie klas pomoże???
+//    Number operator+(const Number &second) {
+//        return Calculator::addition(this, second);
+//    }
 
     // todo dodawanie
     // todo odejmowanie
     // todo mnożenie
     // todo dzielenie
-};
 
+    friend ostream& operator<< (ostream& stream, const Number& num)
+    {
+        return stream << num.toString();
+    }
+};
 
 #endif //CALCULATOR_NUMBER_H
