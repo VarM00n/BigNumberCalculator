@@ -2,57 +2,96 @@
 
 
 int Interpreter::isOperand(char character) {
-    for (int i = 0; i < sizeof(this->operands); ++i)
-        if (character == this->operands[i])
-            return i;
+    switch (character) {
+        case '^':
+            return 1;
+        case '*':
+        case '/':
+            return 2;
+        case '+':
+        case '-':
+            return 3;
+        default:
+            return 0;
+    }
 
-    return -1;
+//
+//    for (int i = 0; i < sizeof(this->operands); ++i)
+//        if (character == this->operands[i])
+//            return i + 1;
+//
+//    return 0;
 }
 
-void Interpreter::expressionToRpn(const string &expression) {
-    for (int i = 0; i < expression.size(); ++i)
-        if (isOperand(expression[i]))
-            return;
-}
-string Interpreter::infixToPostfix(const string &expression) {
+//
+//void Interpreter::expressionToRpn(const string &expression) {
+//    for (int i = 0; i < expression.size(); ++i)
+//        if (isOperand(expression[i]))
+//            return;
+//}
+void Interpreter::infixToPostfix() {
     stack<char> s;
-    s.push('X'); // end of stack marker
-    string result;
+    vector<string> r;
 
-    for (char c : expression) {
-        if (c < 48 || c > 57)
-            result += c;
-        else if(c == '(')
-            s.push(c);
-        else if(c == ')')
-        {
-            while(s.top() != 'X' && s.top() != '(')
-            {
-                result += s.top();
+    string tmp; // for building whole numbers from digit
+
+    for (char c : infixExpression) {
+        if (c == ' ')
+            continue;
+
+        if (isdigit(c) || (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
+            tmp += c;
+            continue;
+        } else if (!tmp.empty()) {
+            r.push_back(tmp);
+            tmp = "";
+        }
+
+        if (c == ')') {
+            while (s.top() != '(') {
+                r.emplace_back(1, s.top());
                 s.pop();
             }
-            if(s.top() == '(')
-                s.pop();
-        } else {
-            // operator
-            while (isOperand(c) <= isOperand(s.top()) && s.top() != 'X')
-            {
-                result += s.top();
-                s.pop();
-            }
+            s.pop();
+        } else if (c == '(') {
             s.push(c);
         }
+        else if(int priority = isOperand(c))
+        {
+            if(!s.empty() && isOperand(s.top()) && priority >= isOperand(s.top()))
+            {
+                r.emplace_back(1, s.top());
+                s.pop();
+            }
+
+            s.push(c);
+        }
+
     }
 
-    while(s.top() != 'X')
-    {
-        result+=s.top();
+    // writing all that remains
+    if (!tmp.empty()) {
+        r.push_back(tmp);
+        tmp = "";
+    }
+
+    // writing remaining operator in proper order
+    while (!s.empty()) {
+        r.emplace_back(1, s.top());
         s.pop();
     }
-//
-//    for (int i = 0; i < expression.size(); ++i) {
-//        if(s[i])
-//    }
-    return this->postfixExpression = result;
+
+    RPN = r;
+}
+
+string Interpreter::infixToPostfix(const string &expression) {
+    infixExpression = expression;
+    infixToPostfix();
+
+    ostringstream imploded;
+    copy(RPN.begin(), RPN.end() - 1,
+         ostream_iterator<std::string>(imploded, " "));
+
+    return imploded.str() + RPN.back();
 }
 

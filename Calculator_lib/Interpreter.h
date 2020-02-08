@@ -2,23 +2,28 @@
 #define CALCULATOR_INTERPRETER_H
 
 #include <stack>
+#include <vector>
+#include <sstream>
+#include <iterator>
 #include <string>
 
 using namespace std;
 
 class Interpreter {
-    string postfixExpression;
+    string infixExpression;
+    vector<string> RPN;
     stack<string> rpn; // reversed polish notation
 
-    char operands[5] = {'+', '-', '*', '/', '^'};
+    // todo wywalić
+    // the operations order is from 0
+    // most importand operations has lower index in this array
+//    char operands[5] = {'^', '*', '/', '+', '-'};
 
-    int isOperand(char character);
-
-    void expressionToRpn(const string& expression);
+    static int isOperand(char character);
 
 public:
     string infixToPostfix(const string& expression);
-
+    void infixToPostfix();
 
 //    void evaluateExpression
 };

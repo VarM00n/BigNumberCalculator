@@ -37,7 +37,7 @@ public:
 
     // todo dodać konstruktor który utworzy obiekt number na podstawie np int, long, long long, unsigned ...
 
-    string toString();
+    string toString() const;
 
     bool isNegative() const;
 
@@ -45,7 +45,7 @@ public:
 
     void setSign(bool sign);
 
-    void setFloatingPos(const int floating_position);
+    void setFloatingPos(const int& floating_position);
 
     int getFloatingPos();
 
@@ -82,7 +82,11 @@ public:
     // todo odejmowanie
     // todo mnożenie
     // todo dzielenie
-};
 
+    friend ostream& operator<< (ostream& stream, const Number& num)
+    {
+        return stream << num.toString();
+    }
+};
 
 #endif //CALCULATOR_NUMBER_H

@@ -26,7 +26,7 @@ void Number::setSign(bool sign) {
     Number::sign = sign;
 }
 
-string Number::toString() {
+string Number::toString() const {
     if (sign)
         return "-" + value;
     return value;
@@ -83,7 +83,7 @@ void Number::setValue(const string &val) {
     Number::value = val;
 }
 
-void Number::setFloatingPos(const int fp) {
+void Number::setFloatingPos(const int& fp) {
     Number::floating_pos = fp;
 }
 

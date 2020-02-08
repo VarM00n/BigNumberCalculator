@@ -2,7 +2,7 @@
 #include "../Calculator_lib/Calculator.h"
 
 
-TEST(floatingAdditionOperation, ExampleData){
+TEST(Addition, ExampleData){
     EXPECT_EQ ("0", Calculator::addition("-0", "-0"));
     EXPECT_EQ ("0", Calculator::addition("0", "-0"));
     EXPECT_EQ ("0", Calculator::addition("-0", "0"));
@@ -63,4 +63,8 @@ TEST(Multiplication, ExampleData) {
     EXPECT_EQ ("420928163434326883680024835110916661358071264732801979621810", Calculator::multiplication("-804043724064200204957096618415", "-523514021484629082438802501614"));
     EXPECT_EQ ("-150514578035545579916337469790309486885040994410646715001388", Calculator::multiplication("-641792339012689047353653164116", "234522241675698338440636390943"));
     EXPECT_EQ ("-28043678435868111159081929660038894598120771242394363153123", Calculator::multiplication("86494148983942324396910195947", "-324226306233435882542372856809"));
+}
+
+TEST(AdditionFP, ExampleData){
+    EXPECT_EQ ("3.0", Calculator::addition("1.5", "1.5"));
 }
