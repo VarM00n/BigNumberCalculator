@@ -2,8 +2,11 @@
 #define CALCULATOR_NUMBER_H
 
 #include <string>
+//#include "Calculator.h"
 
 using namespace std;
+
+//class Calculator;
 
 class Number {
 private:
@@ -29,6 +32,8 @@ private:
     void sanitizeValue();
 
 public:
+    Number();
+
     // todo output prepare by value nie mogło być "00012312"
     explicit Number(const string& value);
 
@@ -71,12 +76,20 @@ public:
 
     // todo inkrementacja
     // todo dekrementacja
-    // todo array operator
 
     bool operator> (const Number& r);
     bool operator< (const Number& r);
-    bool operator== (const Number& r);
-    bool operator!= (const Number& r);
+    inline bool operator==(const Number &r) const{
+        return this->sign == r.sign && this->value == r.value;
+    }
+    inline bool operator!=(const Number &r) const {
+        return !operator==(r);
+    }
+
+    // todo tu będzie problem z korzystaniem z czegoś co wykorzystuje to co budujemy, może zaprzyjaźnianie klas pomoże???
+//    Number operator+(const Number &second) {
+//        return Calculator::addition(this, second);
+//    }
 
     // todo dodawanie
     // todo odejmowanie

@@ -2,6 +2,11 @@
 
 using namespace std;
 
+Number::Number() {
+    this->setSign(false);
+    setValue("0");
+}
+
 Number::Number(const string &val, bool sign) {
     this->sign = sign;
     setValue(val);
@@ -173,14 +178,6 @@ bool Number::operator<(const Number &r) {
     return true;
 }
 
-bool Number::operator==(const Number &r) {
-    return this->sign == r.sign && this->value == r.value;
-}
-
-bool Number::operator!=(const Number &r) {
-    return !operator==(r);
-}
-
 string Number::add_coma(int place_of_comma){
     std::string value;
     value = "";
@@ -198,3 +195,4 @@ string Number::add_coma(int place_of_comma){
     }
     return value;
 }
+

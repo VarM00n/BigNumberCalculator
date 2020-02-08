@@ -6,26 +6,28 @@
 #include <sstream>
 #include <iterator>
 #include <string>
+#include "Number.h"
 
 using namespace std;
 
 class Interpreter {
     string infixExpression;
     vector<string> RPN;
-    stack<string> rpn; // reversed polish notation
 
-    // todo wywalić
-    // the operations order is from 0
-    // most importand operations has lower index in this array
-//    char operands[5] = {'^', '*', '/', '+', '-'};
-
+    /**
+     * Returns 0 if character is not operator or priority otherwise
+     * order start from 1 and thats highest priority
+     * @param character
+     * @return
+     */
     static int isOperand(char character);
+    void infixToRPN();
 
 public:
-    string infixToPostfix(const string& expression);
-    void infixToPostfix();
+    string infixToRPN(const string& expression);
 
-//    void evaluateExpression
+
+    Number evaluateExpression(const string& expression);
 };
 
 

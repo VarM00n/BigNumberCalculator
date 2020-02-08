@@ -106,6 +106,13 @@ Number Calculator::preMultiplication(Number &a, Number &b) {
     return Number("0");
 }
 
+
+Number Calculator::preExponentiation(Number &a, Number &b) {
+    // todo
+    return exponentiationOperation(a, b);
+}
+
+
 Number Calculator::additionOperation(Number &n1, Number &n2) {
     unsigned long maks_rozmiar = n1.size();
     if (n2.size() > n1.size()) maks_rozmiar = n2.size();
@@ -177,6 +184,21 @@ Number Calculator::multiplicationOperation(Number &n1, Number &n2) {
         result = addition(result, i);
     }
     return Number(result);
+}
+
+Number Calculator::exponentiationOperation(Number &a, Number &b) {
+    Number c;
+    // todo co to kurwa jest XD???!   Number(to_string(i)) < b
+    for (int i = 0; Number(to_string(i)) < b; ++i) {
+        // todo potęgowanie
+    }
+
+    if(b.isNegative())
+    {
+        // todo odwrócenie liczby
+    }
+
+    return Number();
 }
 
 Number Calculator::floatingMultiplicationOperation(Number &n1, Number &n2) {

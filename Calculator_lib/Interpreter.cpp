@@ -1,5 +1,5 @@
 #include "Interpreter.h"
-
+#include "Calculator.h"
 
 int Interpreter::isOperand(char character) {
     switch (character) {
@@ -14,38 +14,29 @@ int Interpreter::isOperand(char character) {
         default:
             return 0;
     }
-
-//
-//    for (int i = 0; i < sizeof(this->operands); ++i)
-//        if (character == this->operands[i])
-//            return i + 1;
-//
-//    return 0;
 }
 
-//
-//void Interpreter::expressionToRpn(const string &expression) {
-//    for (int i = 0; i < expression.size(); ++i)
-//        if (isOperand(expression[i]))
-//            return;
-//}
-void Interpreter::infixToPostfix() {
+void Interpreter::infixToRPN() {
     stack<char> s;
     vector<string> r;
 
     string tmp; // for building whole numbers from digit
+    bool lastOp = false;
 
     for (char c : infixExpression) {
         if (c == ' ')
             continue;
 
-        if (isdigit(c) || (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
+        if (isdigit(c) || (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == '.' || (c == '-' && lastOp)) {
             tmp += c;
+            lastOp = false;
             continue;
         } else if (!tmp.empty()) {
             r.push_back(tmp);
             tmp = "";
         }
+
+        lastOp = true;
 
         if (c == ')') {
             while (s.top() != '(') {
@@ -55,11 +46,8 @@ void Interpreter::infixToPostfix() {
             s.pop();
         } else if (c == '(') {
             s.push(c);
-        }
-        else if(int priority = isOperand(c))
-        {
-            if(!s.empty() && isOperand(s.top()) && priority >= isOperand(s.top()))
-            {
+        } else if (int priority = isOperand(c)) {
+            if (!s.empty() && isOperand(s.top()) && priority >= isOperand(s.top())) {
                 r.emplace_back(1, s.top());
                 s.pop();
             }
@@ -84,14 +72,58 @@ void Interpreter::infixToPostfix() {
     RPN = r;
 }
 
-string Interpreter::infixToPostfix(const string &expression) {
+string Interpreter::infixToRPN(const string &expression) {
     infixExpression = expression;
-    infixToPostfix();
+    infixToRPN();
 
     ostringstream imploded;
     copy(RPN.begin(), RPN.end() - 1,
          ostream_iterator<std::string>(imploded, " "));
 
     return imploded.str() + RPN.back();
+}
+
+Number Interpreter::evaluateExpression(const string &expression) {
+    infixExpression = expression;
+    infixToRPN();
+
+    stack<string> numbers;
+    for(string e : RPN)
+    {
+        if(e.size() != 1 || !isOperand(e[0]))
+            numbers.push(e);
+        else
+        {
+            Number a(numbers.top());
+            numbers.pop();
+            Number b(numbers.top());
+            numbers.pop();
+
+            switch (e[0])
+            {
+                case '+':
+                    numbers.push(Calculator::addition(a, b).toString());
+                    break;
+                case '-':
+                    numbers.push(Calculator::substract(a, b).toString());
+                    break;
+                case '*':
+                    numbers.push(Calculator::multiplication(a, b).toString());
+                    break;
+                case '/':
+                    // todo
+//                    numbers.push(Calculator::division(a, b).toString());
+                    break;
+                case '^':
+                    // todo
+                    break;
+                default:
+                    break;
+            }
+
+        }
+    }
+
+    return Number(numbers.top());
 }
 
