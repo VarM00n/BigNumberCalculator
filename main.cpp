@@ -1,21 +1,19 @@
 #include <iostream>
 #include <string>
 
-#include "Calculator.h"
+#include "Calculator_lib/Calculator.h"
 
 using namespace std;
 
 
 int main(){
-    Calculator calc;
-
     string a;
     cin >> a;
     string b;
     cin >> b;
     Number n1(a);
     Number n2(b);
-    cout << calc.interpreterForSubstract(a,b);
+    cout << Calculator::division(n1,n2,2);
     return 0;
 }
 
@@ -39,14 +37,14 @@ int main(){
 //        string a = argv[1];
 //        string b = argv[3];
 //
-//        cout << calc.substract(a, b);
+//        cout << calc.substractOperation(a, b);
 //    }
 //    else if(argv[2] == mul)
 //    {
 //        string a = argv[1];
 //        string b = argv[3];
 //
-//        cout << calc.multiplication(a, b);
+//        cout << calc.multiplicationOperation(a, b);
 //    }
 //    return 0;
 //}
