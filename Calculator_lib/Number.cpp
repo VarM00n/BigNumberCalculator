@@ -48,9 +48,11 @@ void Number::sanitizeValue() {
         return;
     }
 
-    for(int i = size() - 1; i > 0; i--){
+    // TODO spróbować zrobić to z mniejszą złożonością
+    int valueSize = (int)size();
+    for(int i = valueSize - 1; i > 0; i--){
         if(getValue()[i] == '.'){
-            setFloatingPos(size() - i -1);
+            setFloatingPos(valueSize - i -1);
             break;
         }
     }
@@ -61,23 +63,8 @@ void Number::sanitizeValue() {
             output += i;
     }
 
-    // remove unnecessary zeros from the beginning of the number
-//    while (output[0] == '0')
-//        output.erase(0, 1);
-
-    // empty value is zero
-    if (output.empty()) {
-        sign = false;
-        value = "0";
-        return;
-    }
-
-    value = output;
-
-    if (value == "0")
-        sign = false;
-
-
+    this->setValue(output);
+    this->removeLeadingZeros();
 }
 
 string Number::getValue() {
@@ -92,7 +79,7 @@ void Number::setFloatingPos(const int& fp) {
     Number::floating_pos = fp;
 }
 
-int Number::getFloatingPos() {
+int Number::getFloatingPos() const {
     return Number::floating_pos;
 }
 
@@ -179,20 +166,32 @@ bool Number::operator<(const Number &r) {
 }
 
 string Number::add_coma(int place_of_comma){
-    std::string value;
-    value = "";
+    std::string val;
+    val = "";
 //    if(this->sign){
 //        value += "-";
 //    }
     for(int i = 0 ; i < this->size(); i++){
         if(i == place_of_comma) {
-            value += (char) 46;
-            value += this->getValue()[i];
+            val += (char) 46;
+            val += this->getValue()[i];
         }
         else{
-            value += this->getValue()[i];
+            val += this->getValue()[i];
         }
     }
-    return value;
+    return val;
 }
 
+Number* Number::removeLeadingZeros() {
+    while ((this->getValue()[0] == '0' && this->getValue()[1] != '.') || this->getValue()[0] == '-') {
+        this->setValue(this->getValue().erase(0, 1));
+    }
+
+    if (this->getValue().empty()) {
+        this->setValue("0");
+        this->setSign(false);
+    }
+
+    return this;
+}

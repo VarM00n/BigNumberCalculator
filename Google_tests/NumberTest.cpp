@@ -55,3 +55,8 @@ TEST(Greater, ExampleData6) {
     EXPECT_EQ (true, a == b);
     EXPECT_EQ (false, a != b);
 }
+
+TEST(removeLeadingZeros, WhenNumberIsZero) {
+    Number a("0");
+    EXPECT_EQ ("0", a.getValue());
+}

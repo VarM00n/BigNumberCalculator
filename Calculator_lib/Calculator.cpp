@@ -127,7 +127,7 @@ Number Calculator::additionOperation(Number &n1, Number &n2) {
         result.insert(0, to_string(((n1_n + n2_n + carry) % 10)));
         carry = (n1_n + n2_n + carry) / 10;
     }
-    return Number(removeTrailingZeros(result));
+    return Number(result);
 }
 
 Number Calculator::substractOperation(Number &n1, Number &n2) {
@@ -174,8 +174,8 @@ Number Calculator::multiplicationOperation(Number &n1, Number &n2) {
             carry = mul / 10;
         }
         tmp.insert(0, to_string(carry));
-        // todo może lepiej korzystać z number?
-        tmp = Calculator::removeTrailingZeros(tmp);
+        // todo może lepiej korzystać z number? w całym algorytmie
+        tmp = Number(tmp).removeLeadingZeros()->toString();
         tu_sum.push_back(tmp);
     }
 
@@ -207,7 +207,7 @@ Number Calculator::floatingMultiplicationOperation(Number &n1, Number &n2) {
     //multiplication
     Number result(multiplication(n1, n2));
     result.setValue(result.add_coma(result.size() - place_of_comma_in_result));
-    result.setValue(removeTrailingZeros(result));
+    result.removeLeadingZeros();
     return result;
 }
 
@@ -233,7 +233,7 @@ Number Calculator::floatingAdditionOperation(Number &n1, Number &n2){
     //addition
     Number result(addition(n1, n2));
     result.setValue(result.add_coma(result.size() - place_of_comma_in_result));
-    result.setValue(removeTrailingZeros(result));
+    result.removeLeadingZeros();
     return result;
 }
 
@@ -259,7 +259,7 @@ Number Calculator::floatingSubstractOperation(Number &n1, Number &n2){
     }
     Number result(substract(n1, n2));
     result.setValue(result.add_coma(result.size() - place_of_comma_in_result));
-    result.setValue(removeTrailingZeros(result));
+    result.removeLeadingZeros();
     return result;
 }
 
@@ -284,19 +284,3 @@ Number Calculator::division(Number &n1, Number &n2, int apr) {
     }
     return result;
 }
-
-
-string Calculator::removeTrailingZeros(Number &str) {
-
-    if (str.getValue().empty())
-        return "0";
-
-    while ((str.getValue()[0] == '0' && str.getValue()[1] != '.') || str.getValue()[0] == '-')
-        str.setValue(str.getValue().erase(0, 1));
-
-    if(str.getValue()[0] != '-' && str.isNegative()){
-        str.setValue('-' + str.getValue());
-    }
-    return str.getValue();
-}
-

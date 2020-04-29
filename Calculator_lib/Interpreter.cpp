@@ -1,6 +1,10 @@
 #include "Interpreter.h"
 #include "Calculator.h"
 
+#include <string>
+#include <algorithm>
+#include <regex>
+
 int Interpreter::isOperand(char character) {
     switch (character) {
         case '^':
@@ -84,7 +88,8 @@ string Interpreter::infixToRPN(const string &expression) {
 }
 
 Number Interpreter::evaluateExpression(const string &expression) {
-    infixExpression = expression;
+    // hack "-" -> "+-"
+    infixExpression = std::regex_replace(expression, std::regex("\\-"), "+-");
     infixToRPN();
 
     stack<string> numbers;

@@ -2,11 +2,8 @@
 #define CALCULATOR_NUMBER_H
 
 #include <string>
-//#include "Calculator.h"
 
 using namespace std;
-
-//class Calculator;
 
 class Number {
 private:
@@ -34,10 +31,7 @@ private:
 public:
     Number();
 
-    // todo output prepare by value nie mogło być "00012312"
     explicit Number(const string& value);
-
-    // todo output prepare by value nie mogło być "00012312"
     Number(const string& value, bool sign);
 
     // todo dodać konstruktor który utworzy obiekt number na podstawie np int, long, long long, unsigned ...
@@ -52,9 +46,8 @@ public:
 
     void setFloatingPos(const int& floating_position);
 
-    int getFloatingPos();
+    int getFloatingPos() const;
 
-    // todo output prepare by value nie mogło być "00012312"
     void setValue(const string &value);
 
     void setNumberInPosition(long position, char digit);
@@ -73,6 +66,8 @@ public:
     string getValue();
 
     string add_coma(int place_of_comma);
+
+    Number* removeLeadingZeros();
 
     // todo inkrementacja
     // todo dekrementacja
