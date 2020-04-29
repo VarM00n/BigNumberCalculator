@@ -1,4 +1,5 @@
 #include "Number.h"
+#include "Calculator.h"
 
 using namespace std;
 
@@ -177,6 +178,7 @@ bool Number::operator==(const Number &r) {
     return this->sign == r.sign && this->value == r.value;
 }
 
+
 bool Number::operator!=(const Number &r) {
     return !operator==(r);
 }
@@ -198,3 +200,4 @@ string Number::add_coma(int place_of_comma){
     }
     return value;
 }
+

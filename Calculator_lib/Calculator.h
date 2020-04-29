@@ -15,7 +15,6 @@ private:
      * @return String with valid value
      */
     static string prepareOutputDataString(string output);
-
     /**
      * Validation and standarization of output number
      *
@@ -26,62 +25,43 @@ private:
 
     // Core calculation functions
     static Number additionOperation(Number &n1, Number &n2);
-    static Number substractOperation(Number &n1, Number &n2);
-    static Number multiplicationOperation(Number &n1, Number &n2);
-
-    /**
-     * Prepares provided data to quick calculation
-     * @param a
-     * @param b
-     * @return
-     */
     static Number preAddition(Number &a, Number &b);
-    /**
-     * Prepares provided data to quick calculation
-     * @param a
-     * @param b
-     * @return
-     */
 
-
-    /**
-     *
-     * @param a
-     * @param b
-     * @return
-     */
-
+    static Number substractOperation(Number &n1, Number &n2);
     static Number preSubstract(Number &a, Number &b);
-    /**
-     * Prepares provided data to quick calculation
-     * @param a
-     * @param b
-     * @return
-     */
+
+    static Number multiplicationOperation(Number &n1, Number &n2);
     static Number preMultiplication(Number &a, Number &b);
 
+    static Number divisionOperation(Number &n1, Number &n2);
+    static Number preDivision(Number &a, Number &b);
+    static Number div(Number &a, Number &b);
 
 public:
 
-    // Overloads
+
     static string addition(const string &val1, const string &val2);
+    static Number addition(Number &a, Number &b);
+    static Number floatingAdditionOperation(Number &a, Number &b);
+    static string division(const string& val1, const string& val2);
+
     static string substract(const string &n1, const string &n2);
     static string multiplication(const string &n1, const string &n2);
-    static string removeTrailingZeros(string str);
 
-    static Number addition(Number &a, Number &b);
+    static string removeTrailingZeros(string str);
+    static string removeOneZero(string str);
+
+
     static Number substract(Number &a, Number &b);
     static Number multiplication(Number &a, Number &b);
 
-    static Number division(Number &n1, Number &n2, int apr);
-
     static string removeTrailingZeros(Number &str);
-
-    static Number floatingAdditionOperation(Number &a, Number &b);
+    static string removeOneZero(Number &str);
+    static string changeToFloat(Number &str);
 
     static Number floatingSubstractOperation(Number &a, Number &b);
-
     static Number floatingMultiplicationOperation(Number &a, Number &b);
+    static Number floatingDivisionOperation(Number &n1, Number &n2, int app);
 
 
 };

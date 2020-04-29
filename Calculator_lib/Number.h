@@ -17,11 +17,6 @@ private:
     bool floating = false;
 
     int floating_pos = 0;
-    /**
-     * Comparison of val1 to val2
-     * val1 > val2
-     */
-    static bool isValueBigger(string val1, string val2);
 
     /**
      * Validing and fixing value string
@@ -68,6 +63,14 @@ public:
     string getValue();
 
     string add_coma(int place_of_comma);
+
+
+
+    /**
+ * Comparison of val1 to val2
+ * val1 > val2
+ */
+    static bool isValueBigger(string val1, string val2);
 
     // todo inkrementacja
     // todo dekrementacja
