@@ -304,27 +304,32 @@ Number Calculator::divisionOperation(Number &n1, Number &n2){ //1 1.25
     return Number(result);
 }
 
-Number Calculator::floatingDivisionOperation(Number &n1, Number &n2, int app = 2){
+Number Calculator::floatingDivisionOperation(Number &n1, Number &n2, int app = 4){
     for (int i = 0; i < n1.getFloatingPos() - n2.getFloatingPos(); i++){
-        n2.setValue(n2.getValue() + "0");
+        Number ten = Number("10");
+        n2 = preMultiplication(n2, ten);
     }
     for (int i = 0; i < n2.getFloatingPos() - n1.getFloatingPos(); i++){
-        n1.setValue(n1.getValue() + "0");
+        Number ten = Number("10");
+        n1 = preMultiplication(n1, ten);
     }
     if(n2.getFloatingPos() != 0){
-        Number ten = Number("10");
         for(int i = 0; i < n2.getFloatingPos(); i++){
+            Number ten = Number("10");
             n1 = preMultiplication(n1, ten);
             n2 = preMultiplication(n2, ten);
         }
     }
-    int tempCommaPlace = n1.getFloatingPos();
     for (int i = 0; i < app; i++){
         Number ten = Number("10");
         n1 = preMultiplication(n1, ten);
     }
     Number result = divisionOperation(n1, n2);
-    result.setValue(result.add_coma(result.size() - app - tempCommaPlace));
+    for(int i = 0; i < app; i++) {
+        result.setValue("0" + result.getValue());
+    }
+    int placeForComma = result.size() - app;
+    result.setValue(result.add_coma(placeForComma));
 
     return result;
 }
@@ -341,7 +346,7 @@ Number Calculator::preDivision(Number &a, Number &b) {
         a.setSign(false);
         b.setSign(false);
 
-        return Number(floatingDivisionOperation(a, b, 2));
+        return Number(floatingDivisionOperation(a, b, 4));
     }
 
     // (-a) * b = -(a*b)
