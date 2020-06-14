@@ -40,7 +40,7 @@ public:
 
     void setSign(bool sign);
 
-    void setFloatingPos(const int& floating_position);
+    void setFloatingPos(int floating_position);
 
     int getFloatingPos();
 

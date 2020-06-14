@@ -33,7 +33,7 @@ private:
     static Number multiplicationOperation(Number &n1, Number &n2);
     static Number preMultiplication(Number &a, Number &b);
 
-    static Number divisionOperation(Number &n1, Number &n2);
+public: static Number divisionOperation(Number &n1, Number &n2);
     static Number preDivision(Number &a, Number &b);
     static Number div(Number &a, Number &b);
 
@@ -57,7 +57,6 @@ public:
 
     static string removeTrailingZeros(Number &str);
     static string removeOneZero(Number &str);
-    static string changeToFloat(Number &str);
 
     static Number floatingSubstractOperation(Number &a, Number &b);
     static Number floatingMultiplicationOperation(Number &a, Number &b);

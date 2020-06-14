@@ -2,6 +2,7 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
@@ -251,6 +252,10 @@ Number Calculator::preMultiplication(Number &a, Number &b) {
  * division
  */
 
+//Number Calculator::divisionOperation(Number &n1, Number &n2){
+//
+//}
+
 
 
 Number Calculator::divisionOperation(Number &n1, Number &n2){ //1 1.25
@@ -298,37 +303,32 @@ Number Calculator::divisionOperation(Number &n1, Number &n2){ //1 1.25
     }
     return Number(result);
 }
+
 Number Calculator::floatingDivisionOperation(Number &n1, Number &n2, int app = 2){
-    n1.setValue(changeToFloat(n1));
-    n2.setValue(changeToFloat(n2));
-    int biggestFloatingPosition = n1.getFloatingPos();
-    if(n1.getFloatingPos() < n2.getFloatingPos()){
-        biggestFloatingPosition = n2.getFloatingPos();
+    for (int i = 0; i < n1.getFloatingPos() - n2.getFloatingPos(); i++){
+        n2.setValue(n2.getValue() + "0");
     }
-    if(biggestFloatingPosition == 0){
-        return Number(divisionOperation(n1, n2));
+    for (int i = 0; i < n2.getFloatingPos() - n1.getFloatingPos(); i++){
+        n1.setValue(n1.getValue() + "0");
     }
-    else{
-        Number ten ("10");
-        for(int i = 0; i < biggestFloatingPosition - n1.getFloatingPos(); i++){
-            n1.setValue(preMultiplication(n1, ten).getValue());
-//            n1.setFloatingPos(n1.getFloatingPos() + 1);
+    if(n2.getFloatingPos() != 0){
+        Number ten = Number("10");
+        for(int i = 0; i < n2.getFloatingPos(); i++){
+            n1 = preMultiplication(n1, ten);
+            n2 = preMultiplication(n2, ten);
         }
-        for(int j = 0; j < biggestFloatingPosition - n2.getFloatingPos(); j++){
-            n2.setValue(preMultiplication(n2, ten).getValue());
-//            n2.setFloatingPos(n2.getFloatingPos() + 1);
-        }
-        Number ten1 ("10");
-        for(int k = 0; k < app; k++){
-            n1.setValue(preMultiplication(n1, ten1).getValue());
-            n1.setFloatingPos(n1.getFloatingPos() + 1);
-        }
-        Number result (divisionOperation(n1, n2));
-        result.setValue(result.add_coma(result.size() - app)); //result.size() - app
-        return result;
     }
-//    return result;
+    int tempCommaPlace = n1.getFloatingPos();
+    for (int i = 0; i < app; i++){
+        Number ten = Number("10");
+        n1 = preMultiplication(n1, ten);
+    }
+    Number result = divisionOperation(n1, n2);
+    result.setValue(result.add_coma(result.size() - app - tempCommaPlace));
+
+    return result;
 }
+
 Number Calculator::preDivision(Number &a, Number &b) {
     // a / 0 = 0
     // 0 / b = 0
@@ -341,7 +341,7 @@ Number Calculator::preDivision(Number &a, Number &b) {
         a.setSign(false);
         b.setSign(false);
 
-        return Number(divisionOperation(a, b));
+        return Number(floatingDivisionOperation(a, b, 2));
     }
 
     // (-a) * b = -(a*b)
@@ -382,10 +382,3 @@ string Calculator::removeOneZero(Number &str){
     return str.getValue();
 }
 
-string Calculator::changeToFloat(Number &str){
-    if(str.getFloatingPos() == 0){
-        str.setValue(str.getValue() + '0');
-        str.setFloatingPos(1);
-    }
-    return str.getValue();
-}

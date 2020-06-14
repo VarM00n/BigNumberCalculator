@@ -68,3 +68,4 @@ TEST(Multiplication, ExampleData) {
 TEST(AdditionFP, ExampleData){
     EXPECT_EQ ("3.0", Calculator::addition("1.5", "1.5"));
 }
+

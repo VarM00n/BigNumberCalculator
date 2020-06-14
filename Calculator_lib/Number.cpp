@@ -1,5 +1,6 @@
 #include "Number.h"
 #include "Calculator.h"
+#include <iostream>
 
 using namespace std;
 
@@ -45,8 +46,9 @@ void Number::sanitizeValue() {
     }
 
     for(int i = size() - 1; i > 0; i--){
-        if(getValue()[i] == '.'){
-            setFloatingPos(size() - i -1);
+        if(this -> getValue()[i] == '.'){
+            setFloatingPos(size() - i - 1);
+            this->floating = true;
             break;
         }
     }
@@ -84,7 +86,7 @@ void Number::setValue(const string &val) {
     Number::value = val;
 }
 
-void Number::setFloatingPos(const int& fp) {
+void Number::setFloatingPos(int fp) {
     Number::floating_pos = fp;
 }
 
